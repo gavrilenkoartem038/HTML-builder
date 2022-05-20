@@ -73,7 +73,7 @@ fs.readdir(stylesPath, {withFileTypes: true}, (err, files) => {
     if(file.isFile() && path.extname(file.name) === '.css') {
       const readStream = fs.createReadStream(path.join(stylesPath, file.name), 'utf-8');
       readStream.on('data', data => {
-        fs.appendFile(bundlePath, data, err => {
+        fs.appendFile(bundlePath, data + '\n', err => {
           if (err) throw err;
         });
       });
